@@ -1,0 +1,44 @@
+<project name="management" basedir="." default="test">
+
+    <property name="build-dir" value="${basedir}/target"/>
+
+    <target name="clean">
+        <delete dir="${build-dir}" failonerror="no"/>
+    </target>
+
+    <property name="classes-dir" value="${build-dir}/classes"/>
+
+    <target name="init" depends="clean">
+        <mkdir dir="${build-dir}"/>
+        <mkdir dir="${classes-dir}"/>
+    </target>
+
+    <property name="main-java-dir" value="${basedir}/src/main/java"/>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${main-java-dir}" destdir="${build-dir}" includeantruntime="false"/>
+    </target>
+
+    <property name="test-java-dir" value="${basedir}/src/test/java"/>
+
+    <target name="test-compile" depends="compile">
+        <javac srcdir="${test-java-dir}" destdir="${build-dir}" includeantruntime="true"/>
+    </target>
+
+    <target name="test" depends="test-compile">
+        <junit>
+            <batchtest fork="yes">
+                <fileset dir="${test-java-dir}">
+                    <filename name="**/*.java"/>
+                </fileset>
+            </batchtest>
+
+            <classpath>
+                <pathelement location="${build-dir}"/>
+            </classpath>
+            <formatter type="plain"/>
+            <test name="Test.java.ua.nure.kn.yesipov.UserTest"/>
+        </junit>
+    </target>
+
+</project>
