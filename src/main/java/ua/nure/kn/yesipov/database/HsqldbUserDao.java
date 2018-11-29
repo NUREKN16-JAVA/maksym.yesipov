@@ -5,6 +5,7 @@ import main.java.ua.nure.kn.yesipov.User;
 import java.util.Collection;
 
 public class HsqldbUserDao implements UserDao {
+
     @Override
     public User create(User user) throws DatabaseException {
         return null;
