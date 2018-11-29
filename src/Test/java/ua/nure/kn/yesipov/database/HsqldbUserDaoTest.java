@@ -2,6 +2,8 @@ package Test.java.ua.nure.kn.yesipov.database;
 
 import junit.framework.TestCase;
 import main.java.ua.nure.kn.yesipov.User;
+import main.java.ua.nure.kn.yesipov.database.ConnectionFactory;
+import main.java.ua.nure.kn.yesipov.database.ConnectionFactoryImpl;
 import main.java.ua.nure.kn.yesipov.database.DatabaseException;
 import main.java.ua.nure.kn.yesipov.database.HsqldbUserDao;
 import org.junit.Before;
@@ -11,11 +13,13 @@ import java.util.Date;
 
 public class HsqldbUserDaoTest extends TestCase {
     HsqldbUserDao dao;
+    private ConnectionFactory connectionFactory;
 
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        dao = new HsqldbUserDao();
+        connectionFactory = new ConnectionFactoryImpl();
+        dao = new HsqldbUserDao(connectionFactory);
     }
 
     @Test
