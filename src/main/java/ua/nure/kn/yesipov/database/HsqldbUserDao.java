@@ -4,9 +4,11 @@ import main.java.ua.nure.kn.yesipov.User;
 
 import java.sql.*;
 import java.util.Collection;
+import java.util.LinkedList;
 
 public class HsqldbUserDao implements UserDao {
     private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?,?,?)";
+    private static final String SELECT_ALL_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
     private ConnectionFactory connectionFactory;
 
     public HsqldbUserDao(ConnectionFactory connectionFactory) {
@@ -57,7 +59,29 @@ public class HsqldbUserDao implements UserDao {
     }
 
     @Override
-    public Collection findAll() throws DatabaseException {
-        return null;
+    public Collection<User> findAll() throws DatabaseException {
+
+        Collection<User> result = new LinkedList<>();
+
+        try {
+            Connection connection = connectionFactory.createConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SELECT_ALL_QUERY);
+            while(resultSet.next()) {
+                User user = new User();
+                user.setId(new Long(resultSet.getLong(1)));
+                user.setFirstName(resultSet.getString(2));
+                user.setLastName(resultSet.getString(3));
+                user.setDateOfBirthd(resultSet.getDate(4));
+                result.add(user);
+            }
+            statement.close();
+            connection.close();
+        } catch (DatabaseException e) {
+            throw e;
+        } catch (SQLException e) {
+            throw new DatabaseException(e);
+        }
+        return result;
     }
 }

@@ -14,6 +14,7 @@ import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.Date;
 
 public class HsqldbUserDaoTest extends DatabaseTestCase {
@@ -42,6 +43,19 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
             e.printStackTrace();
             fail(e.toString());
         }
+    }
+
+    @Test
+    public void testFindAll(){
+        try {
+            Collection collection = dao.findAll();
+            assertNotNull("Collection is null", collection);
+            assertEquals("Collection size",2, collection.size());
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+            fail(e.toString());
+        }
+
     }
 
     @Override
