@@ -20,21 +20,10 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     HsqldbUserDao dao;
     private ConnectionFactory connectionFactory;
 
-    @Override
-    protected IDatabaseConnection getConnection() throws Exception {
-        connectionFactory = new ConnectionFactoryImpl();
-        return new DatabaseConnection(connectionFactory.createConnection());
-    }
-
-    @Override
-    protected IDataSet getDataSet() throws Exception {
-        IDataSet dataSet = new XmlDataSet(getClass().getClassLoader().getResourceAsStream("usersDataSet.xml"));
-        return dataSet;
-    }
-
     @Before
     public void setUp() throws Exception {
         super.setUp();
+        connectionFactory = new ConnectionFactoryImpl();
         dao = new HsqldbUserDao(connectionFactory);
     }
 
@@ -53,5 +42,17 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
             e.printStackTrace();
             fail(e.toString());
         }
+    }
+
+    @Override
+    protected IDatabaseConnection getConnection() throws Exception {
+        connectionFactory = new ConnectionFactoryImpl();
+        return new DatabaseConnection(connectionFactory.createConnection());
+    }
+
+    @Override
+    protected IDataSet getDataSet() throws Exception {
+        IDataSet dataSet = new XmlDataSet(getClass().getClassLoader().getResourceAsStream("usersDataSet.xml"));
+        return dataSet;
     }
 }
