@@ -11,7 +11,14 @@ public class HsqldbUserDao implements UserDao {
     private static final String SELECT_ALL_QUERY = "SELECT id, firstname, lastname, dateofbirth FROM users";
     private ConnectionFactory connectionFactory;
 
-    public HsqldbUserDao(ConnectionFactory connectionFactory) {
+    public HsqldbUserDao() {
+    }
+
+    public ConnectionFactory getConnectionFactory() {
+        return connectionFactory;
+    }
+
+    public void setConnectionFactory(ConnectionFactory connectionFactory) {
         this.connectionFactory = connectionFactory;
     }
 
