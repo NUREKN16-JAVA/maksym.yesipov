@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.Collection;
 
 public class HsqldbUserDao implements UserDao {
-    private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (,?,?)";
+    private static final String INSERT_QUERY = "INSERT INTO users (firstname, lastname, dateofbirth) VALUES (?,?,?)";
     private ConnectionFactory connectionFactory;
 
     public HsqldbUserDao(ConnectionFactory connectionFactory) {

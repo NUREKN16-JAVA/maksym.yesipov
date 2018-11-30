@@ -6,19 +6,35 @@ import main.java.ua.nure.kn.yesipov.database.ConnectionFactory;
 import main.java.ua.nure.kn.yesipov.database.ConnectionFactoryImpl;
 import main.java.ua.nure.kn.yesipov.database.DatabaseException;
 import main.java.ua.nure.kn.yesipov.database.HsqldbUserDao;
+import org.dbunit.DatabaseTestCase;
+import org.dbunit.database.DatabaseConnection;
+import org.dbunit.database.IDatabaseConnection;
+import org.dbunit.dataset.IDataSet;
+import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Date;
 
-public class HsqldbUserDaoTest extends TestCase {
+public class HsqldbUserDaoTest extends DatabaseTestCase {
     HsqldbUserDao dao;
     private ConnectionFactory connectionFactory;
+
+    @Override
+    protected IDatabaseConnection getConnection() throws Exception {
+        connectionFactory = new ConnectionFactoryImpl();
+        return new DatabaseConnection(connectionFactory.createConnection());
+    }
+
+    @Override
+    protected IDataSet getDataSet() throws Exception {
+        IDataSet dataSet = new XmlDataSet(getClass().getClassLoader().getResourceAsStream("usersDataSet.xml"));
+        return dataSet;
+    }
 
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        connectionFactory = new ConnectionFactoryImpl();
         dao = new HsqldbUserDao(connectionFactory);
     }
 
