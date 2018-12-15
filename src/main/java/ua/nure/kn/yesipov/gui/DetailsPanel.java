@@ -1,7 +1,7 @@
 package main.java.ua.nure.kn.yesipov.gui;
 
 import main.java.ua.nure.kn.yesipov.User;
-import org.apache.harmony.regex.internal.nls.Messages;
+import main.java.ua.nure.kn.yesipov.util.Messages;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,5 @@
 package Test.java.ua.nure.kn.yesipov.database;
 
-import junit.framework.TestCase;
 import main.java.ua.nure.kn.yesipov.User;
 import main.java.ua.nure.kn.yesipov.database.ConnectionFactory;
 import main.java.ua.nure.kn.yesipov.database.ConnectionFactoryImpl;
@@ -54,11 +53,11 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() {
         try {
             Collection collection = dao.findAll();
             assertNotNull("Collection is null", collection);
-            assertEquals("Collection size",2, collection.size());
+            assertEquals("Collection size", 2, collection.size());
         } catch (DatabaseException e) {
             e.printStackTrace();
             fail(e.toString());
@@ -77,6 +76,7 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
             fail(e.getMessage());
         }
     }
+
     public void testDelete() {
         User testUser = createUser();
         try {
