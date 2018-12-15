@@ -41,6 +41,7 @@ public class MainFrameTest extends JFCTestCase {
             users = new ArrayList<User>();
             users.add(expectedUser);
             mockUserDao.expectAndReturn("findAll", users);
+     //       mockUserDao.expectAndReturn("findAll", users);
             setHelper(new JFCTestHelper());
             mainFrame = new MainFrame();
         } catch (Exception e) {
@@ -55,7 +56,6 @@ public class MainFrameTest extends JFCTestCase {
             super.tearDown();
             mockUserDao.verify();
             mainFrame.setVisible(false);
-            getHelper();
             TestHelper.cleanUp(this);
         } catch (Exception e) {
             e.printStackTrace();

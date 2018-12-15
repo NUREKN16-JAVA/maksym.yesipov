@@ -140,8 +140,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
             }
             try {
                 parent.getDao().delete(
-                        ((UserTableModel) userTable.getModel())
-                                .getUser(selectedRow));
+                        ((UserTableModel) userTable.getModel()).getUser(selectedRow));
             } catch (DatabaseException e1) {
                 JOptionPane.showMessageDialog(this, e1.getMessage(), "Error",
                         JOptionPane.ERROR_MESSAGE);

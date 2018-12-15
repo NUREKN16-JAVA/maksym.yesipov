@@ -2,6 +2,7 @@ package main.java.ua.nure.kn.yesipov;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class User {
     private Long id;
@@ -28,30 +29,39 @@ public class User {
     public Date getDateOfBirth() {
         return dateOfBirth;
     }
+
     public void setDateOfBirth(Date dateOfBirthd) {
         this.dateOfBirth = dateOfBirthd;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public Object getFullName() {
+
+    public String getFullName() {
         return getLastName() + ", " + getFirstName();
     }
+
     public int getAge() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -60,6 +70,28 @@ public class User {
         calendar.setTime(getDateOfBirth());
         int year = calendar.get(Calendar.YEAR);
         return currentYear - year;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.isNull(id) ? 0 : Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return getFullName();
     }
 }
 
