@@ -1,4 +1,4 @@
-<project name="management" basedir="." default="test">
+<project name="usermanagement" basedir="." default="test">
 
     <property name="build-dir" value="${basedir}/target"/>
 

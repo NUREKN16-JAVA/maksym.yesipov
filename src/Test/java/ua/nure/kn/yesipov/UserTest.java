@@ -31,7 +31,7 @@ public class UserTest {
 
     @Test
     public void testGetAge() {
-        user.setDateOfBirthd(dateOfBirth);
+        user.setDateOfBirth(dateOfBirth);
         assertEquals(2018 - 1999, user.getAge());
     }
 }

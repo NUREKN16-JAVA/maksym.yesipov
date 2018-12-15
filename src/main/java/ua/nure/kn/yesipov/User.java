@@ -7,13 +7,29 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    private Date dateOfBirthd;
+    private Date dateOfBirth;
 
-    public Date getDateOfBirthd() {
-        return dateOfBirthd;
+    public User() {
     }
-    public void setDateOfBirthd(Date dateOfBirthd) {
-        this.dateOfBirthd = dateOfBirthd;
+
+    public User(Long id, String firstName, String lastName, Date dateOfBirth) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public User(String firstName, String lastName, Date date) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dateOfBirth = date;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+    public void setDateOfBirth(Date dateOfBirthd) {
+        this.dateOfBirth = dateOfBirthd;
     }
     public String getFirstName() {
         return firstName;
@@ -41,7 +57,7 @@ public class User {
         calendar.setTime(new Date());
 
         int currentYear = calendar.get(Calendar.YEAR);
-        calendar.setTime(getDateOfBirthd());
+        calendar.setTime(getDateOfBirth());
         int year = calendar.get(Calendar.YEAR);
         return currentYear - year;
     }
