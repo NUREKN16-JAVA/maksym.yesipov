@@ -11,13 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+
 public class BrowseServlet extends HttpServlet {
 
     private static final String BROWSE_JSP = "/browse.jsp";
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        browse(req, resp);
+        if (nonNull(req.getParameter("addButton"))) {
+        } else if (nonNull(req.getParameter("editButton"))) {
+            edit(req, resp);
+        } else if (nonNull(req.getParameter("deleteButton"))) {
+        } else if (nonNull(req.getParameter("detailsButton"))) {
+        } else {
+            browse(req, resp);
+        }
     }
 
     private void browse(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
@@ -28,5 +38,24 @@ public class BrowseServlet extends HttpServlet {
         } catch (DatabaseException | IOException e) {
             throw new ServletException(e);
         }
+    }
+
+    private void edit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idStr = req.getParameter("id");
+
+        if (isNull(idStr) || idStr.isEmpty()) {
+            req.setAttribute("error", "You must select a user");
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        try {
+            User user = DaoFactory.getInstance().getUserDao().find(new Long(idStr));
+            req.getSession().setAttribute("user", user);
+        } catch (DatabaseException e) {
+            req.setAttribute("error", "ERROR: " + e.toString());
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
+            return;
+        }
+        req.getRequestDispatcher("/edit").forward(req, resp);
     }
 }

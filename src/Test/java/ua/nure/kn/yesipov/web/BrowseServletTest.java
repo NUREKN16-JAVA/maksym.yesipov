@@ -18,6 +18,7 @@ public class BrowseServletTest extends MockServletTestCase {
     private static final String DELETE_BUTTON = "deleteButton";
     private static final String USER_FIRST_NAME = "John";
     private static final String USER_LAST_NAME = "Doe";
+    private static final String ID_ATTRIBUTE = "id";
 
     @Override
     protected void setUp() throws Exception {
@@ -35,5 +36,17 @@ public class BrowseServletTest extends MockServletTestCase {
                 .getAttribute(USERS_ATTRIBUTE);
         assertNotNull("Could not find list of users in session", actualUsers);
         assertEquals(expectedUsers, actualUsers);
+    }
+
+    public void testEdit() {
+        User expectedUser = new User(TEST_ID, USER_FIRST_NAME, USER_LAST_NAME, new Date());
+        getMockUserDao().expectAndReturn("find", TEST_ID, expectedUser);
+        addRequestParameter(EDIT_BUTTON, "Edit");
+        addRequestParameter(ID_ATTRIBUTE, TEST_ID_STRING);
+        doPost();
+
+        User actualUser = (User) getWebMockObjectFactory().getMockSession().getAttribute("user");
+        assertNotNull("Could not find user in session", actualUser);
+        assertEquals(expectedUser, actualUser);
     }
 }
