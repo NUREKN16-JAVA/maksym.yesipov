@@ -16,8 +16,8 @@ public class BrowseServletTest extends MockServletTestCase {
     private static final String EDIT_BUTTON = "editButton";
     private static final String DETAILS_BUTTON = "detailsButton";
     private static final String DELETE_BUTTON = "deleteButton";
-    public static final String USER_FIRST_NAME = "John";
-    public static final String USER_LAST_NAME = "Doe";
+    private static final String USER_FIRST_NAME = "John";
+    private static final String USER_LAST_NAME = "Doe";
 
     @Override
     protected void setUp() throws Exception {
