@@ -19,6 +19,7 @@ public class BrowseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (nonNull(req.getParameter("addButton"))) {
+            add(req, resp);
         } else if (nonNull(req.getParameter("editButton"))) {
             edit(req, resp);
         } else if (nonNull(req.getParameter("deleteButton"))) {
