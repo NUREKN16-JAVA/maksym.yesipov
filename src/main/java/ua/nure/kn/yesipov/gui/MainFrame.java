@@ -98,8 +98,6 @@ public class MainFrame extends JFrame {
         showPanel(getDetailsPanel());
     }
 
-
-
     private DetailsPanel getDetailsPanel() {
         if (detailsPanel == null) {
             detailsPanel = new DetailsPanel(this);

@@ -62,7 +62,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
             e.printStackTrace();
             fail(e.toString());
         }
-
     }
 
     public void testFind() {

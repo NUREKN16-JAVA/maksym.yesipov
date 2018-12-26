@@ -58,7 +58,6 @@ public class HsqldbUserDao implements UserDao {
     }
 
     @Override
-
     public void update(User user) throws DatabaseException {
         try (Connection connection = connectionFactory.createConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);

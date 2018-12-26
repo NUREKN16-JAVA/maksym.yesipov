@@ -123,7 +123,7 @@ public class BrowsePanel extends JPanel implements ActionListener {
         } else if ("edit".equalsIgnoreCase(actionCommand)) { //$NON-NLS-1$
             int selectedRow = userTable.getSelectedRow();
             if (selectedRow == -1) {
-                JOptionPane.showMessageDialog(this, "Select a user, please",
+                JOptionPane.showMessageDialog(this, "Select any user",
                         "Edit user", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }

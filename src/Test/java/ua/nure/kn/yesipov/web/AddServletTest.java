@@ -64,7 +64,7 @@ public class AddServletTest extends MockServletTestCase {
     public void testAddInvalidDate() {
         addRequestParameter("firstName", "John");
         addRequestParameter("lastName", "Doe");
-        addRequestParameter("date", "asdasdaewqe");
+        addRequestParameter("date", "fsdgtrwe");
         addRequestParameter("okButton", "Ok");
 
         doPost();

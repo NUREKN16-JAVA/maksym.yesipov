@@ -55,10 +55,10 @@ public class BrowseServlet extends HttpServlet {
             req.getRequestDispatcher("/browse.jsp").forward(req, resp);
             return;
         }
-        req.getRequestDispatcher("/edit.jsp").forward(req, resp);
+        req.getRequestDispatcher("/edit").forward(req, resp);
     }
 
     private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/add.jsp").forward(req, resp);
+        req.getRequestDispatcher("/add").forward(req, resp);
     }
 }
