@@ -16,8 +16,6 @@ import static java.util.Objects.nonNull;
 
 public class BrowseServlet extends HttpServlet {
 
-    private static final String BROWSE_JSP = "/browse.jsp";
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (nonNull(req.getParameter("addButton"))) {
@@ -34,7 +32,7 @@ public class BrowseServlet extends HttpServlet {
         try {
             Collection<User> users = DaoFactory.getInstance().getUserDao().findAll();
             req.getSession(true).setAttribute("users", users);
-            req.getRequestDispatcher(BROWSE_JSP).forward(req, resp);
+            req.getRequestDispatcher("/browse.jsp").forward(req, resp);
         } catch (DatabaseException | IOException e) {
             throw new ServletException(e);
         }
@@ -56,6 +54,10 @@ public class BrowseServlet extends HttpServlet {
             req.getRequestDispatcher("/browse.jsp").forward(req, resp);
             return;
         }
-        req.getRequestDispatcher("/edit").forward(req, resp);
+        req.getRequestDispatcher("/edit.jsp").forward(req, resp);
+    }
+
+    private void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/add.jsp").forward(req, resp);
     }
 }
