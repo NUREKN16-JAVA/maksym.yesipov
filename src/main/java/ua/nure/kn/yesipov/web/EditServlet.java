@@ -39,7 +39,7 @@ public class EditServlet extends HttpServlet {
             return;
         }
         try {
-            DaoFactory.getInstance().getUserDao().update(user);
+            processUser(user);
         } catch (DatabaseException e) {
             e.printStackTrace();
             throw new ServletException(e);
@@ -80,6 +80,10 @@ public class EditServlet extends HttpServlet {
 
     private void doCancel(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/browse").forward(req, resp);
+    }
+
+    protected void processUser(User user) throws DatabaseException {
+        DaoFactory.getInstance().getUserDao().update(user);
     }
 
     protected void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
