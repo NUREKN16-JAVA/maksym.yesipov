@@ -7,8 +7,7 @@
 <form action="<%=request.getContextPath()%>/add" method="post">
     First name <input name="firstName" value=""><br>
     Last name <input name="lastName" value=""><br>
-    Date of birth <input name="date"
-                         value="<fmt:formatDate value="" type="date" dateStyle="medium"/>"><br>
+    Date of birth <input name="date" value=""/>"><br>
     <input type="submit" name="okButton" value="Ok">
     <input type="submit" name="cancelButton" value="Cancel">
 </form>
