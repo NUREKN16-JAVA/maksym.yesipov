@@ -11,7 +11,6 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.XmlDataSet;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.util.Collection;
 import java.util.Date;
@@ -31,7 +30,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         dao = new HsqldbUserDao(connectionFactory);
     }
 
-    @Test
     public void testCreate() {
         try {
             User user = new User();
@@ -52,7 +50,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
         }
     }
 
-    @Test
     public void testFindAll() {
         try {
             Collection collection = dao.findAll();
@@ -118,7 +115,6 @@ public class HsqldbUserDaoTest extends DatabaseTestCase {
 
     @Override
     protected IDataSet getDataSet() throws Exception {
-        IDataSet dataSet = new XmlDataSet(getClass().getClassLoader().getResourceAsStream("usersDataSet.xml"));
-        return dataSet;
+        return new XmlDataSet(getClass().getClassLoader().getResourceAsStream("usersDataSet.xml"));
     }
 }
