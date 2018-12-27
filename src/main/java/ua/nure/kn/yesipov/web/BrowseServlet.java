@@ -34,7 +34,7 @@ public class BrowseServlet extends HttpServlet {
 
     private void browse(HttpServletRequest req, HttpServletResponse resp) throws ServletException {
         try {
-            Collection<User> users = DaoFactory.getInstance().getUserDao().findAll();
+            Collection users = DaoFactory.getInstance().getUserDao().findAll();
             req.getSession(true).setAttribute("users", users);
             req.getRequestDispatcher("/browse.jsp").forward(req, resp);
         } catch (DatabaseException | IOException e) {
