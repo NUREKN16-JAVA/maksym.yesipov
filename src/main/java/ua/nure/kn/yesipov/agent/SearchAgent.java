@@ -2,6 +2,7 @@ package main.java.ua.nure.kn.yesipov.agent;
 
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -20,8 +21,6 @@ public class SearchAgent extends Agent {
         super.setup();
         System.out.println(getAID().getName() + " agent started");
 
-        addBehaviour(new RequestServer());
-
         DFAgentDescription description = new DFAgentDescription();
         description.setName(getAID());
         ServiceDescription serviceDescription = new ServiceDescription();
@@ -34,6 +33,31 @@ public class SearchAgent extends Agent {
         } catch (FIPAException e) {
             e.printStackTrace();
         }
+
+        addBehaviour(new TickerBehaviour(this, 60000) {
+            @Override
+            protected void onTick() {
+                DFAgentDescription agentDescription = new DFAgentDescription();
+                ServiceDescription serviceDescription = new ServiceDescription();
+                serviceDescription.setType("searching");
+                agentDescription.addServices(serviceDescription);
+
+                try {
+                    DFAgentDescription[] descriptions = DFService.search(myAgent, agentDescription);
+                    aids = new AID[descriptions.length];
+                    for (int i = 0; i < descriptions.length; i++) {
+                        DFAgentDescription d = descriptions[i];
+                        if (!d.getName().equals(getAID())) {
+                            aids[i] = d.getName();
+                        }
+                    }
+                } catch (FIPAException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        addBehaviour(new RequestServer());
     }
 
     @Override
