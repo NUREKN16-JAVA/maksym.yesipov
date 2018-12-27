@@ -32,6 +32,10 @@ public class MockUserDao implements UserDao {
         return users.get(id);
     }
 
+    public Collection<User> find(String firstName, String lastName) throws DatabaseException {
+        throw new UnsupportedOperationException();
+    }
+
     public Collection<User> findAll() throws DatabaseException {
         return users.values();
     }

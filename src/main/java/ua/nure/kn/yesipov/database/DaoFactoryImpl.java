@@ -4,15 +4,18 @@ public class DaoFactoryImpl extends DaoFactory {
 
     @Override
     public UserDao getUserDao(){
-        UserDao userDao = null;
 
         try {
             Class<?> daoClass = Class.forName(properties.getProperty(USER_DAO));
-            userDao = (UserDao) daoClass.newInstance();
+            UserDao userDao = (UserDao) daoClass.newInstance();
             userDao.setConnectionFactory(getConnectionFactory());
+            return userDao;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return userDao;
+    }
+
+    protected ConnectionFactory getConnectionFactory() {
+        return new ConnectionFactoryImpl(properties);
     }
 }

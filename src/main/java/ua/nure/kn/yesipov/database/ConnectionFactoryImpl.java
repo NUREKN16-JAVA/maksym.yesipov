@@ -8,7 +8,7 @@ import java.util.Properties;
 public class ConnectionFactoryImpl implements ConnectionFactory {
 
     private String DRIVER = "org.hsqldb.jdbcDriver";
-    private String URL = "jdbc:hsqldb:file:db/usermanagement";
+    private String URL = "jdbc:hsqldb:file:C:/Users/KAMPUTER/IdeaProjects/usermanagement/db/usermanagement";
     private String USER = "sa";
     private String PASSWORD = "";
 
@@ -50,10 +50,6 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
 
     @Override
     public Connection createConnection() throws DatabaseException {
-        String driver = "org.hsqldb.jdbcDriver";
-        String url = "jdbc:hsqldb:file:db/usermanagement";
-        String user = "sa";
-        String password = "";
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {

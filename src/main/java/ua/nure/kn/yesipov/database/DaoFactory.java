@@ -27,6 +27,9 @@ public abstract class DaoFactory {
         }
     }
 
+    protected DaoFactory() {
+    }
+
     public static synchronized DaoFactory getInstance() {
         if (instance == null) {
             Class<?> factoryClass;
@@ -41,27 +44,27 @@ public abstract class DaoFactory {
     }
 
 
-    public DaoFactory() {
-        properties = new Properties();
-        try {
-            properties.load(getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+//    public DaoFactory() {
+//        properties = new Properties();
+//        try {
+//            properties.load(getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE));
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
     public static void init(Properties p) {
         properties = p;
         instance = null;
     }
 
-    protected ConnectionFactory getConnectionFactory() {
-        String user = properties.getProperty(CONNECTION_USER);
-        String password = properties.getProperty(CONNECTION_PASSWORD);
-        String url = properties.getProperty(CONNECTION_URL);
-        String driver = properties.getProperty(CONNECTION_DRIVER);
-        return new ConnectionFactoryImpl(driver, url, user, password);
-    }
+//    protected ConnectionFactory getConnectionFactory() {
+//        String user = properties.getProperty(CONNECTION_USER);
+//        String password = properties.getProperty(CONNECTION_PASSWORD);
+//        String url = properties.getProperty(CONNECTION_URL);
+//        String driver = properties.getProperty(CONNECTION_DRIVER);
+//        return new ConnectionFactoryImpl(driver, url, user, password);
+//    }
 
     public abstract UserDao getUserDao();
 }
