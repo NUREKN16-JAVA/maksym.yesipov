@@ -15,11 +15,15 @@ import java.util.Collection;
 
 public class SearchAgent extends Agent {
     private AID[] aids;
+    private SearchGui gui = null;
 
     @Override
-    protected void setup() {
+    public void setup() {
         super.setup();
         System.out.println(getAID().getName() + " agent started");
+
+        gui = new SearchGui(this);
+        gui.setVisible(true);
 
         DFAgentDescription description = new DFAgentDescription();
         description.setName(getAID());
@@ -70,6 +74,8 @@ public class SearchAgent extends Agent {
         } catch (FIPAException e) {
             e.printStackTrace();
         }
+        gui.setVisible(false);
+        gui.dispose();
     }
 
     public void search(String firstName, String lastName) throws SearchException {
@@ -86,6 +92,6 @@ public class SearchAgent extends Agent {
     }
 
     public void showUsers(Collection<User> users) {
-
+        gui.addUsers(users);
     }
 }
