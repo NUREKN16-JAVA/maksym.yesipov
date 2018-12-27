@@ -33,7 +33,7 @@ public class DetailsServlet extends HttpServlet {
     }
 
     protected void showPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher(EDIT_JSP).forward(req, resp);
+        req.getRequestDispatcher("details.jsp").forward(req, resp);
     }
 
     private void cancelEdit(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

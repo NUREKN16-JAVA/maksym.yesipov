@@ -31,4 +31,13 @@
         <servlet-name>Add Servlet</servlet-name>
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Details Servlet</servlet-name>
+        <servlet-class>main.java.ua.nure.kn.yesipov.web.DetailsServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Details Servlet</servlet-name>
+        <url-pattern>/details</url-pattern>
+    </servlet-mapping>
 </web-app>
