@@ -36,11 +36,8 @@ public class HsqldbUserDao implements UserDao {
     }
 
     @Override
-
     public User create(User user) throws DatabaseException {
-
         CallableStatement callableStatement = null;
-
         ResultSet resultSet = null;
 
         try (Connection connection = connectionFactory.createConnection();
